@@ -6,6 +6,10 @@ $(function(){
 		// subscribe to the event: "a note starts playing", you get following midi info: note(=pitch), velocity(~volume), channel
 		// noteOn with velocity 0 is already mapped to noteOff!
 		app.onNoteOn(function(note, velocity, channel){
+
+			console.log(note);
+
+
 			var oscillator = context.createOscillator();
 			var gainNode = context.createGainNode();
 			// map different channels to different types of oscillators
@@ -22,6 +26,9 @@ $(function(){
 			if(notes[note]) notes[note].noteOff(0);
 			notes[note] = oscillator;
 			notes[note].noteOn(0); // this is the function from the Web Audio API to start the oscillator
+
+
+
 		});
 
 		//subscribe to the event: "a note stops playing"
